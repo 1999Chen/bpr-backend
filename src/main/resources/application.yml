@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /${spring.application.name}
+
+  max-http-header-size: 10000000
+spring:
+  application:
+    name:
+
+    #    username: root
+    #    password: Pcp@1024
+  datasource:
+  #    url: jdbc:mysql://10.110.30.4:3307/uni-cache?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=UTC
+      url: jdbc:mysql://localhost:3306/bpr_db?user=root&password=passwordforroot&useUnicode=true&characterEncoding=gbk&autoReconnect=true&failOverReadOnly=false&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      username: root
+      password: passwordforroot
+  #    username: root
+  #    password: Pcp@1024
+      driver-class-name: com.mysql.jdbc.Driver
+
+
+
