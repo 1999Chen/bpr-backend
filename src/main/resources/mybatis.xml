@@ -13,6 +13,6 @@
     </environments>
     <mappers>
         <mapper resource="mappers/ItemMapper.xml" />
-
+        <mapper resource="mappers/CartMapper.xml" />
     </mappers>
 </configuration>

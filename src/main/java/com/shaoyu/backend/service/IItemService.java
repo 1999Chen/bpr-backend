@@ -7,13 +7,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IItemService {
+
     Item getItemByName(String name);
-    List<Item> getItemsByName(String keyword);
+    List<Item> getItemsByFilters(String keyword,List<String> regions, List<String>  categories);
     Item getItemById(int id) throws SQLException, ClassNotFoundException;
     List<Item> getAllItems() throws ClassNotFoundException, SQLException;
 
     String uploadItem(Item item);
 
+    List<Item> getItemsByFiltersTest(String keyword);
 
     /*    String get(String id);*/
 

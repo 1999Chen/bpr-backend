@@ -12,9 +12,13 @@ import java.util.List;
 @Mapper
 public interface ItemMapper extends BaseMapper<Item> {
 
-    List<Item> selectItemsByName(String name);
+    List<Item> selectItemsByFilters(String keyword, List<String> regions, List<String> categories);
+
+    List<Item> selectItemsByFiltersTest(String keyword);
+
 
     List<Item> selectItemByName(String name);
+
     List<Item> getAllItems();
 
     Item selectItemById(Integer id);
@@ -23,18 +27,10 @@ public interface ItemMapper extends BaseMapper<Item> {
 
 //    @Insert("insert into items (name,description,region,imageBase64,price,status,quantity,id) values(#{name},#{description},#{region},#{imageBase64},#{price},#{status},#{quantity},null)")
 
-    void uploadItem(String name, String description, String region,String imageBase64, double price, boolean status, int quantity);
+    void uploadItem(String name, String description, String region, String imageBase64, double price, boolean status, int quantity);
 
 
     List<Item> selectItemByYear(@Param("minYear") int minYear, @Param("maxYear") int maxYear);
 
-
-
-
-    List<Item> selectItemsByStar(Integer personId);
-
-    double selectRatingById(Integer id);
-
-    Integer selectVotesById(Integer id);
 
 }

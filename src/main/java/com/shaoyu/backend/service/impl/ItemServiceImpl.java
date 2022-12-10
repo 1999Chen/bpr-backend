@@ -26,18 +26,18 @@ public class ItemServiceImpl implements IItemService {
 //        if (!list.isEmpty()){
 //        return list.get(0);
 //        }
-//        return null;
-        System.out.println(list.size());
-        System.out.println(list);
+
 
         return list.get(0);
     }
 
     @Override
-    public List<Item> getItemsByName(String keyword) {
-        List<Item>list  = itemMapper.selectItemsByName("%"+keyword+"%");
+    public List<Item> getItemsByFilters(String keyword,List<String> regions, List<String>  categories) {
+        List<Item> list = itemMapper.selectItemsByFilters("%"+keyword+"%",regions,categories);
+        System.out.println("getitems by filters "+list);
         return list;
     }
+
 
     @Override
     public Item getItemById(int id) throws SQLException, ClassNotFoundException {
@@ -50,10 +50,7 @@ public class ItemServiceImpl implements IItemService {
         List<Item>list = itemMapper.getAllItems();
         return list;
 
-//succeed
-//        Item Item = ss.selectOne("selectItem",15414);
-//
-//        return Item.toString();
+
     }
 
     @Override
@@ -66,6 +63,11 @@ public class ItemServiceImpl implements IItemService {
         System.out.println("user mapper finished ");
 
         return "upload";
+    }
+
+    @Override
+    public List<Item> getItemsByFiltersTest(String keyword) {
+        return  itemMapper.selectItemsByFiltersTest("%"+keyword+"%");
     }
 
 }

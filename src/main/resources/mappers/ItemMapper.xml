@@ -13,9 +13,17 @@
         <result property="quantity" column="quantity" />
     </resultMap>
 
-    <select id="selectItemsByName" resultMap="ItemResult">
+    <select id="selectItemsByFilters" resultMap="ItemResult">
+        select * from items where name LIKE #{keyword} and region in (  <foreach collection="regions" item="region"
+                                                                                 separator=",">
+        #{region}
+    </foreach> )
+    </select>
+
+    <select id="selectItemsByFiltersTest"  resultMap="ItemResult">
         select * from items where name LIKE #{name}
     </select>
+
 
     <select id="selectItemByName"  resultMap="ItemResult">
         select * from items where name = #{name}

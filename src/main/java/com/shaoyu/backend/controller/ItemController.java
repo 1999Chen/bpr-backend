@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -20,34 +21,33 @@ public class ItemController {
     @Autowired
     private IItemService itemService;
 
-
-
-
     @GetMapping("/getAllItems")
     public List<Item> getAllItems() throws SQLException, ClassNotFoundException {
-
-        System.out.println("getAllItems");
         List<Item> newlist = itemService.getAllItems();
-        System.out.println(newlist);
         return newlist;
     }
 
-    @GetMapping("/getItemListPage")
-    public List<Item> getItemListPage(String keyword) {
-
-        System.out.println("getAllItemListPage");
-        List<Item> newlist = itemService.getItemsByName(keyword);
+    @GetMapping("/getItemList")
+    public List<Item> getItemList(String keyword,String region, String category) {
+        List<String> regionList = Arrays.asList(region.split("@"));
+        List<String> categoryList = Arrays.asList(category.split("@"));
+        List<Item> newlist = itemService.getItemsByFilters(keyword,regionList,categoryList);
         return newlist;
     }
+
+    @GetMapping("/getItemListTest")
+    public List<Item> getItemList(String keyword) {
+
+        List<Item> newlist = itemService.getItemsByFiltersTest(keyword);
+        return newlist;
+    }
+
 
     @GetMapping("/getItemByName")
     public Item getItemByName(String name) {
 
-        System.out.println("getItemByName 1111");
-        System.out.println("getItemByName 2222"+name);
-        Item newItem = itemService.getItemByName(name);
 
-        System.out.println("item is "+newItem.toString());
+        Item newItem = itemService.getItemByName(name);
 
         return newItem;
     }
