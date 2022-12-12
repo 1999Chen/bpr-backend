@@ -28,6 +28,7 @@ public interface ItemMapper extends BaseMapper<Item> {
 //    @Insert("insert into items (name,description,region,imageBase64,price,status,quantity,id) values(#{name},#{description},#{region},#{imageBase64},#{price},#{status},#{quantity},null)")
 
     void uploadItem(String name, String description, String region, String imageBase64, double price, boolean status, int quantity);
+    void updateItem(String name, String description, String region, String imageBase64, double price, boolean status, int quantity);
 
 
     List<Item> selectItemByYear(@Param("minYear") int minYear, @Param("maxYear") int maxYear);

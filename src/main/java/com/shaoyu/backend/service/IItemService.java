@@ -12,10 +12,10 @@ public interface IItemService {
     List<Item> getItemsByFilters(String keyword,List<String> regions, List<String>  categories);
     Item getItemById(int id) throws SQLException, ClassNotFoundException;
     List<Item> getAllItems() throws ClassNotFoundException, SQLException;
-
     String uploadItem(Item item);
-
     List<Item> getItemsByFiltersTest(String keyword);
+    String updateItemInfo(Item item);
+    String removeItemsFromCart(List<String> itemNames);
 
     /*    String get(String id);*/
 

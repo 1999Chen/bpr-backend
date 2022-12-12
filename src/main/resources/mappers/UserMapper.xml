@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shaoyu.backend.mapper.CartMapper">
+
+    <resultMap type="com.shaoyu.backend.model.ItemQuantity" id="CartResult">
+        <id property="id" column="id" />
+        <result property="itemName" column="itemName" />
+        <result property="quantity" column="quantity" />
+        <result property="cartId" column="cartId" />
+    </resultMap>
+
+    <insert id="insertIntoCart"  keyProperty="id" parameterType="com.shaoyu.backend.model.ItemQuantity">
+        INSERT INTO
+            itemquantities
+        (
+cartId, itemName, id, quantity
+        )VALUES(
+                   #{cartId},#{itemName},null,#{quantity}
+
+               )
+    </insert>
+
+    <select id="selectAllItemsByCart"  resultMap="CartResult">
+        select * from  itemquantities where cartId = #{cartId}
+    </select>
+
+    <delete id="deleteItemsByCart" parameterType="com.shaoyu.backend.model.ItemQuantity">
+        DELETE FROM itemquantities WHERE itemName in (
+        <foreach collection="itemNames" item="itemName" separator=",">
+            #{itemName}
+        </foreach>
+        )  and cartId = #{cartId};
+    </delete>
+
+    <select id="selectCartsByName" resultMap="CartResult">
+        select * from Carts where name LIKE #{name}
+    </select>
+
+
+
+    <select id="getAllCarts" resultMap="CartResult">
+        select * from Carts
+    </select>
+
+    <select id="selectCartById" resultType="com.shaoyu.backend.model.Cart">
+        select * from Carts where id = #{id}
+    </select>
+
+
+
+
+
+
+    <select id="selectCartsByDirector"  resultMap="CartResult">
+        select * from Carts where id in (select Cart_id from directors where person_id = #{person_id})
+    </select>
+
+    <select id="selectCartsByStar"  resultMap="CartResult">
+        select * from Carts where id in (select Cart_id from stars where person_id = #{person_id})
+    </select>
+
+    <select id="selectRatingById"  resultType="double">
+        select rating from ratings where Cart_id = #{Cart_id}
+    </select>
+
+    <select id="selectVotesById"  resultType="Integer">
+        select votes from ratings where Cart_id = #{Cart_id}
+    </select>
+
+</mapper>

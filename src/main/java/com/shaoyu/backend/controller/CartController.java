@@ -29,17 +29,14 @@ public class CartController {
         return null;
 //        return itemService.uploadItem(item);
     }
-    @GetMapping("/getAllItemsByCart")
-    public List<ItemQuantity> getAllItemByCart(int cartId) {
+    @GetMapping("/getCartByUser")
+    public int getCartByUser(String username) {
 
-        System.out.println("getAllItemsByCart starts");
-        System.out.println(cartId);
-        List<ItemQuantity> list =cartService.getAllItemsByCart(cartId);
-        System.out.println(list);
-        return list;
+        return cartService.getCartByUser(username);
 
-//        return itemService.uploadItem(item);
     }
+
+
 
     @DeleteMapping("/removeItemsFromCart")
     public String removeItemsFromCart(int cartId, String itemNames) {

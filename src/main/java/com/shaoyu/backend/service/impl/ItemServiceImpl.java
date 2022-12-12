@@ -23,10 +23,6 @@ public class ItemServiceImpl implements IItemService {
     @Override
     public Item getItemByName(String name) {
         List<Item>list  =itemMapper.selectItemByName(name);
-//        if (!list.isEmpty()){
-//        return list.get(0);
-//        }
-
 
         return list.get(0);
     }
@@ -68,6 +64,16 @@ public class ItemServiceImpl implements IItemService {
     @Override
     public List<Item> getItemsByFiltersTest(String keyword) {
         return  itemMapper.selectItemsByFiltersTest("%"+keyword+"%");
+    }
+
+    @Override
+    public String updateItemInfo(Item item) {
+        return null;
+    }
+
+    @Override
+    public String removeItemsFromCart(List<String> itemNames) {
+        return null;
     }
 
 }

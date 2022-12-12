@@ -25,11 +25,6 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
-    public int getItemQuantity() {
-        return 0;
-    }
-
-    @Override
     public List<ItemQuantity> getAllItemsByCart(int cartId) {
        return cartMapper.selectAllItemsByCart(cartId);
     }
@@ -37,6 +32,11 @@ public class CartServiceImpl implements ICartService {
     @Override
     public int addToCart(ItemQuantity itemQuantity) {
         cartMapper.insertIntoCart(itemQuantity.getCartId(), itemQuantity.getItemName(), itemQuantity.getQuantity(),itemQuantity.getId());
+        return 0;
+    }
+
+    @Override
+    public int getCartByUser(String username) {
         return 0;
     }
 
