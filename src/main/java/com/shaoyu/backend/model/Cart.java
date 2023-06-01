@@ -3,50 +3,40 @@ package com.shaoyu.backend.model;
 import java.util.Map;
 
 public class Cart {
-    private int id;
-    private String username;
-    private int totalAmount;
+    private int cartId;
+    private int userId;
+    private int orderId;
 
     public Cart() {
     }
 
-    public Cart(int id, String username,  int totalAmount) {
-        this.id = id;
-        this.username = username;
-
-        this.totalAmount = totalAmount;
+    public Cart(int cartId, int userId, int orderId) {
+        this.cartId = cartId;
+        this.userId = userId;
+        this.orderId = orderId;
     }
 
-    public int getId() {
-        return id;
+    public int getCartId() {
+        return cartId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
     }
 
-    public String getUsername() {
-        return username;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
- public int getTotalAmount() {
-        return totalAmount;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public void setTotalAmount(int totalAmount) {
-        this.totalAmount = totalAmount;
+    public int getOrderId() {
+        return orderId;
     }
 
-
-    public String toString() {
-        return "Cart{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-
-                ", totalAmount=" + totalAmount +
-                '}';
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }

@@ -13,31 +13,44 @@ import java.util.List;
 @Service
 public class CartServiceImpl implements ICartService {
     CartMapper cartMapper;
+    ItemMapper itemMapper;
 
     public CartServiceImpl() {
         SqlSession ss = MyBatisConnection.getConnection();
         cartMapper = ss.getMapper(CartMapper.class);
     }
 
-    @Override
-    public int getTotalAmount(int cartId) {
-        return 0;
-    }
+
 
     @Override
     public List<ItemQuantity> getAllItemsByCart(int cartId) {
-       return cartMapper.selectAllItemsByCart(cartId);
+        List<ItemQuantity>list = cartMapper.selectAllItemsByCart(cartId);
+        for (ItemQuantity i:list
+             ) {
+            System.out.println(i.toString());
+        }
+       return list;
     }
 
     @Override
     public int addToCart(ItemQuantity itemQuantity) {
-        cartMapper.insertIntoCart(itemQuantity.getCartId(), itemQuantity.getItemName(), itemQuantity.getQuantity(),itemQuantity.getId());
+        cartMapper.insertIntoCart(itemQuantity.getCartId(), itemQuantity.getItemName(), itemQuantity.getQuantity(),itemQuantity.getItemId());
         return 0;
     }
 
     @Override
-    public int getCartByUser(String username) {
-        return 0;
+    public int generateNewCart(int userId) {
+
+        cartMapper.generateNewCart(userId);
+        return cartMapper.selectCartByUserId(userId);
+
+    }
+
+
+
+    @Override
+    public int getCartByUser(int userId) {
+        return cartMapper.selectCartByUserId(userId);
     }
 
     @Override
@@ -46,7 +59,21 @@ public class CartServiceImpl implements ICartService {
         return null;
     }
 
+    @Override
+    public String checkOutFromCart(int cartId) {
+        //
+        cartMapper.checkOutFromCart(cartId);
 
+        return null;
+    }
+
+
+    @Override
+    public String checkOutFromItems(int quantity, int itemId) {
+       cartMapper.checkOutFromItems(quantity,itemId);
+        System.out.println("checking out items ---- "+quantity+"---"+itemId);
+        return null;
+    }
 
 
 }

@@ -7,9 +7,10 @@ import java.util.List;
 public interface IUserService {
     List<User> getAllUsers();
     User getUserInfo(String username);
-    User registerUser(User user);
-    String validateLogin(String username,String password);
+    void registerUser(User user);
+    int validateLogin(String username,String password);
     String getUserRole(String username);
-    String removeUser(String username);
+
+    void updateUserInfo(User user);
 
 }

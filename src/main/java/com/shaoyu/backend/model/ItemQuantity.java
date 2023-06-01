@@ -4,17 +4,20 @@ public class ItemQuantity {
 
     private int cartId;
     private String itemName;
-    private int id;
+    private int itemId;
     private int quantity;
 
-    public ItemQuantity() {
-    }
 
-    public ItemQuantity(int cartId, String itemName, int id, int quantity) {
+
+    public ItemQuantity(int cartId, String itemName, int itemId, int quantity ) {
         this.cartId = cartId;
         this.itemName = itemName;
-        this.id = id;
+        this.itemId = itemId;
         this.quantity = quantity;
+
+    }
+
+    public ItemQuantity() {
     }
 
     public int getCartId() {
@@ -33,12 +36,12 @@ public class ItemQuantity {
         this.itemName = itemName;
     }
 
-    public int getId() {
-        return id;
+    public int getItemId() {
+        return itemId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 
     public int getQuantity() {
@@ -54,7 +57,7 @@ public class ItemQuantity {
         return "ItemQuantity{" +
                 "cartId=" + cartId +
                 ", itemName='" + itemName + '\'' +
-                ", id=" + id +
+                ", itemId=" + itemId +
                 ", quantity=" + quantity +
                 '}';
     }

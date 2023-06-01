@@ -6,6 +6,8 @@ public class Item {
     private String description;
     private String region;
     private String imageBase64;
+
+    private String category;
     private int quantity;
     private double price;
     private boolean status;
@@ -14,7 +16,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(String name, String description, String region, String imageBase64, double price, boolean status,int quantity) {
+    public Item(String name, String description, String region, String imageBase64, String category,double price, boolean status,int quantity) {
         this.name = name;
         this.description = description;
         this.region = region;
@@ -22,6 +24,7 @@ public class Item {
         this.quantity = quantity;
         this.price = price;
         this.status = status;
+        this.category = category;
     }
 
     public int getId() {
@@ -89,11 +92,26 @@ public class Item {
         this.quantity = quantity;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
     public String toString() {
         return "Item{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", region='" + region + '\'' +
+                ", imageBase64='" + imageBase64 + '\'' +
+                ", quantity=" + quantity +
                 ", price=" + price +
                 ", status=" + status +
                 '}';

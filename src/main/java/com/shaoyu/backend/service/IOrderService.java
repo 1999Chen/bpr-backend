@@ -7,9 +7,10 @@ import java.util.List;
 public interface IOrderService {
 
     List<Order> getAllOrders();
-    List<Order> getAllOrdersByUser(String username);
-    Order getOrderInfo(String orderId);
-    Order addOrder(Order order);
-    Order removeOrders(List<Order> orders);
+
+    Order getOrderById(int orderId);
+
+    void addOrder(int userId,int amount);
+
 
 }

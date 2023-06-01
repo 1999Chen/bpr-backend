@@ -5,10 +5,12 @@ import com.shaoyu.backend.model.ItemQuantity;
 import java.util.List;
 
 public interface ICartService {
-    int getTotalAmount(int cartId);
-
+   int generateNewCart(int userId);
     List<ItemQuantity>  getAllItemsByCart(int cartId);
     int addToCart(ItemQuantity itemQuantity);
-    int getCartByUser(String username);
+    int getCartByUser(int userId);
     String removeItemsFromCart(int cartId, List<String> itemNames);
+
+    String checkOutFromCart(int cartId);
+    String checkOutFromItems(int quantity, int itemId);
 }

@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shaoyu.backend.mapper.CartMapper">
+<mapper namespace="com.shaoyu.backend.mapper.OrderMapper">
 
-    <resultMap type="com.shaoyu.backend.model.ItemQuantity" id="OrderResult">
-        <id property="id" column="id" />
-        <result property="itemName" column="itemName" />
-        <result property="quantity" column="quantity" />
-        <result property="cartId" column="cartId" />
+
+
+    <resultMap type="com.shaoyu.backend.model.Order" id="OrderResult">
+        <id property="orderId" column="order_id" />
+        <result property="userId" column="user_id" />
+        <result property="cartId" column="cart_id" />
+        <result property="amount" column="amount" />
     </resultMap>
 
-    <select id="selectItemsByFiltersTest"  resultMap="ItemResult">
-        select * from items where name LIKE #{name}
-    </select>
 
 
     <select id="selectAllOrders"  resultMap="OrderResult">
-        select * from items where name LIKE #{name}
+        select * from db_order
     </select>
-    <select id="selectAllOrders"  resultMap="OrderResult">
-        select * from items where name LIKE #{name}
+
+    <select id="selectOrderInfo"  resultMap="OrderResult">
+        select * from db_order where order_id = #{orderId}
     </select>
-    <select id="selectAllOrders"  resultMap="OrderResult">
-        select * from items where name LIKE #{name}
-    </select>
-    <select id="selectAllOrders"  resultMap="OrderResult">
-        select * from items where name LIKE #{name}
-    </select>
-    <select id="selectAllOrders"  resultMap="OrderResult">
-        select * from items where name LIKE #{name}
+
+    <insert id="insertOrder"   keyProperty="id" parameterType="com.shaoyu.backend.model.Order">
+        INSERT INTO
+            db_order
+        (
+           order_id,user_id,cart_id,amount,date
+        )VALUES(
+                   null,#{userId},#{cartId},#{amount},#{date}
+               )
+    </insert>
+
+    <select id="selectUserByCartId" resultType="java.lang.Integer">
+        select cart_id from cart where user_id = #{userId}
     </select>
 
 </mapper>

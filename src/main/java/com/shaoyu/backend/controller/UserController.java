@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
 @RestController
@@ -32,31 +33,33 @@ public class UserController {
     }
 
     @PostMapping("/registerUser")
-    public User registerUser(User user) throws SQLException, ClassNotFoundException {
-        User newUser = userService.registerUser(user);
-        return newUser;
+    public int registerUser(@RequestBody User user) throws SQLException, ClassNotFoundException {
+        int validateCode = userService.validateLogin(user.getUsername(), user.getPassword());
+        if (validateCode == 0) {
+            //1 means successfully registered
+            userService.registerUser(user);
+            return 1;
+        } else {
+            //0 means username already exists
+            return 0;
+        }
     }
 
 
-
-    @GetMapping("/removeUser")
-    public String removeUser(String usernames) throws SQLException, ClassNotFoundException {
-        String a = userService.removeUser(usernames);
-        return a;
-    }
-
-    @GetMapping("/getUserRole")
+    @GetMapping("/validateRole")
     public String getUserRole(String username) throws SQLException, ClassNotFoundException {
-        String a = userService.getUserRole(username);
-        return a;
+        return userService.getUserRole(username);
+    }
+
+    @PostMapping("/updateUserInfo")
+    public void updateUserInfo(@RequestBody User user) throws SQLException, ClassNotFoundException {
+        userService.updateUserInfo(user);
     }
 
     @GetMapping("/validateLogin")
-    public String  validateLogin(String username,String password) throws SQLException, ClassNotFoundException {
-        String a = userService.validateLogin(username,password);
-        return a;
+    public int validateLogin(String username, String password) throws SQLException, ClassNotFoundException {
+        return userService.validateLogin(username, password);
     }
-
 
 
 }

@@ -22,26 +22,14 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
-
-    @GetMapping("/getOrdersByUser")
-    public List<Order> getOrdersByUser(String username){
-        return orderService.getAllOrdersByUser(username);
+    @GetMapping("/getOrderById")
+    public Order getOrderById(int orderId){
+        return orderService.getOrderById(orderId);
     }
 
-    @GetMapping("/getOrdersByUser")
-    public Order  getOrderInfo(String username){
-        return orderService.getOrderInfo(username);
-    }
-
-
-    @DeleteMapping("/removeOrders")
-    public Order removeOrders(String orders) {
-        return null;
-    }
-
-    @GetMapping
-    public Order addOrder(Order order) {
-        return null;
+    @PostMapping("/generateAnOrder")
+    public void addOrder(int cartId,int amount) {
+         orderService.addOrder(cartId,amount);
     }
 
 

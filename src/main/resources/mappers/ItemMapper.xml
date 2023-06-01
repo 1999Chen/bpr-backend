@@ -14,33 +14,39 @@
     </resultMap>
 
     <select id="selectItemsByFilters" resultMap="ItemResult">
-        select * from items where name LIKE #{keyword} and region in (  <foreach collection="regions" item="region"
+        select * from item where name LIKE #{keyword} and region in (  <foreach collection="regions" item="region"
                                                                                  separator=",">
         #{region}
+
+    </foreach> )
+        and category in (  <foreach collection="categories" item="category"
+                                  separator=",">
+        #{category}
+
     </foreach> )
     </select>
 
     <select id="selectItemsByFiltersTest"  resultMap="ItemResult">
-        select * from items where name LIKE #{name}
+        select * from item where name LIKE #{name}
     </select>
 
 
     <select id="selectItemByName"  resultMap="ItemResult">
-        select * from items where name = #{name}
+        select * from item where name = #{name}
     </select>
 
     <select id="getAllItems" resultMap="ItemResult">
-        select * from items
+        select SQL_NO_CACHE * from item;
     </select>
 
     <select id="selectItemById" resultType="com.shaoyu.backend.model.Item">
-        select * from Items where id = #{id}
+        select * from item where id = #{id}
     </select>
 
 
     <insert id="uploadItem"  keyProperty="id" parameterType="com.shaoyu.backend.model.Item">
         INSERT INTO
-            items
+            item
         (
            name,description,region,imageBase64,price,status,quantity,id
         )VALUES(
@@ -50,22 +56,18 @@
     </insert>
 
 
+    <update id="updateItem"  keyProperty="id" parameterType="com.shaoyu.backend.model.Item">
+        UPDATE item SET name=#{name}, description=#{description},region=#{region},imageBase64=#{imageBase64},price=#{price}
+                      ,status=#{status},quantity=#{quantity},category=#{category}
+        where id = #{id}
+    </update>
 
 
-    <select id="selectItemsByDirector"  resultMap="ItemResult">
-        select * from Items where id in (select Item_id from directors where person_id = #{person_id})
-    </select>
+    <delete id="removeItem"   parameterType="com.shaoyu.backend.model.Item">
+        delete from item where item.name = #{itemName};
 
-    <select id="selectItemsByStar"  resultMap="ItemResult">
-        select * from Items where id in (select Item_id from stars where person_id = #{person_id})
-    </select>
+    </delete>
 
-    <select id="selectRatingById"  resultType="double">
-        select rating from ratings where Item_id = #{Item_id}
-    </select>
 
-    <select id="selectVotesById"  resultType="Integer">
-        select votes from ratings where Item_id = #{Item_id}
-    </select>
 
 </mapper>

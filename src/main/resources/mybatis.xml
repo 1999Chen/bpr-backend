@@ -14,5 +14,7 @@
     <mappers>
         <mapper resource="mappers/ItemMapper.xml" />
         <mapper resource="mappers/CartMapper.xml" />
+        <mapper resource="mappers/OrderMapper.xml" />
+        <mapper resource="mappers/UserMapper.xml" />
     </mappers>
 </configuration>

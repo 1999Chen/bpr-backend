@@ -3,7 +3,6 @@ package com.shaoyu.backend.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import com.shaoyu.backend.model.Item;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,7 +15,6 @@ public interface ItemMapper extends BaseMapper<Item> {
 
     List<Item> selectItemsByFiltersTest(String keyword);
 
-
     List<Item> selectItemByName(String name);
 
     List<Item> getAllItems();
@@ -28,8 +26,11 @@ public interface ItemMapper extends BaseMapper<Item> {
 //    @Insert("insert into items (name,description,region,imageBase64,price,status,quantity,id) values(#{name},#{description},#{region},#{imageBase64},#{price},#{status},#{quantity},null)")
 
     void uploadItem(String name, String description, String region, String imageBase64, double price, boolean status, int quantity);
-    void updateItem(String name, String description, String region, String imageBase64, double price, boolean status, int quantity);
+    void updateItem(String name, String description, String region, String imageBase64, String category,double price, boolean status, int quantity,int id);
 
+    void removeItem(String name);
+
+    void  removeItems(String itemNames);
 
     List<Item> selectItemByYear(@Param("minYear") int minYear, @Param("maxYear") int maxYear);
 

@@ -1,6 +1,7 @@
 package com.shaoyu.backend.model;
 
 public class User {
+    private int userId;
     private String username;
     private String password;
     private String region;
@@ -15,7 +16,8 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String region, String address, String email, int age, int phoneNumber, String gender, String profileImage, String role) {
+    public User(int userId,String username, String password, String region, String address, String email, int age, int phoneNumber, String gender, String profileImage, String role) {
+        this.userId=userId;
         this.username = username;
         this.password = password;
         this.region = region;
@@ -26,6 +28,14 @@ public class User {
         this.gender = gender;
         this.profileImage = profileImage;
         this.role = role;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {

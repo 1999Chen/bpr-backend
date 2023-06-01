@@ -30,22 +30,23 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User registerUser(User user) {
-        return null;
+    public void registerUser(User user){userMapper.insertUser(user);
     }
 
     @Override
-    public String validateLogin(String username, String password) {
-        return null;
+    public int validateLogin(String username, String password) {
+        int a = userMapper.validateUserInfo(username,password);
+        System.out.println("user login a "+a);
+        return a;
     }
 
     @Override
     public String getUserRole(String username) {
-        return null;
+        return  userMapper.selectUserRole(username);
+    }
+    @Override
+    public void updateUserInfo(User user) {
+         userMapper.updateUserInfo(user);
     }
 
-    @Override
-    public String removeUser(String username) {
-        return null;
-    }
 }

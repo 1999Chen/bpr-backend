@@ -13,8 +13,14 @@ public interface IItemService {
     Item getItemById(int id) throws SQLException, ClassNotFoundException;
     List<Item> getAllItems() throws ClassNotFoundException, SQLException;
     String uploadItem(Item item);
-    List<Item> getItemsByFiltersTest(String keyword);
+
+
+    List<Item> getPrediction(int userId);
     String updateItemInfo(Item item);
+
+    void   removeItem(String itemName) throws SQLException, ClassNotFoundException;
+
+    void  removeItems(String itemNames);
     String removeItemsFromCart(List<String> itemNames);
 
     /*    String get(String id);*/

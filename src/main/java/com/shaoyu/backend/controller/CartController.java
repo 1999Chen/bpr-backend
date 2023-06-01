@@ -18,6 +18,14 @@ public class CartController {
     @Autowired
     private ICartService cartService;
 
+
+    @PostMapping("/addNewCart")
+    public int addNewCart(int userId) {
+
+        return cartService.generateNewCart(userId);
+
+    }
+
     @PostMapping("/addToCart")
     public String addItemToCart(@RequestBody ItemQuantity itemQuantity) {
 
@@ -29,13 +37,21 @@ public class CartController {
         return null;
 //        return itemService.uploadItem(item);
     }
-    @GetMapping("/getCartByUser")
-    public int getCartByUser(String username) {
 
-        return cartService.getCartByUser(username);
+    @GetMapping("/getCartByUser")
+    public int getCartByUser(int userId) {
+        int id = cartService.getCartByUser(userId);
+        System.out.println("getting cart id----" + id);
+        return id;
 
     }
 
+    @GetMapping("/getItemsByCart")
+    public List<ItemQuantity> getItemsByCart(int cartId) {
+
+        return cartService.getAllItemsByCart(cartId);
+
+    }
 
 
     @DeleteMapping("/removeItemsFromCart")
@@ -46,10 +62,23 @@ public class CartController {
         System.out.println(itemNames);
         List<String> itemNameList = Arrays.asList(itemNames.split("@"));
         System.out.println(itemNameList);
-        cartService.removeItemsFromCart(cartId,itemNameList);
+        cartService.removeItemsFromCart(cartId, itemNameList);
         return null;
 
-//        return itemService.uploadItem(item);
     }
+
+    @DeleteMapping("/checkOut")
+    public String checkOutFromCart(int cartId) {
+        System.out.println("checkoutFromCart");
+        List<ItemQuantity> list = cartService.getAllItemsByCart(cartId);
+        for (ItemQuantity i : list
+        ) {
+            cartService.checkOutFromItems(i.getQuantity(), i.getItemId());
+        }
+        cartService.checkOutFromCart(cartId);
+        return null;
+
+    }
+
 
 }

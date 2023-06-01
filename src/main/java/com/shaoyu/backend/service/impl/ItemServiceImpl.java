@@ -44,6 +44,8 @@ public class ItemServiceImpl implements IItemService {
     @Override
     public List<Item> getAllItems() throws ClassNotFoundException, SQLException {
         List<Item>list = itemMapper.getAllItems();
+        System.out.println("get all items : "+list.size());
+        System.out.println("get all items : "+list);
         return list;
 
 
@@ -62,13 +64,26 @@ public class ItemServiceImpl implements IItemService {
     }
 
     @Override
-    public List<Item> getItemsByFiltersTest(String keyword) {
-        return  itemMapper.selectItemsByFiltersTest("%"+keyword+"%");
+    public List<Item> getPrediction(int userId) {
+        return null;
     }
+
 
     @Override
     public String updateItemInfo(Item item) {
+        itemMapper.updateItem(item.getName(),item.getDescription(),item.getRegion(),item.getImageBase64(),item.getCategory(),item.getPrice(),
+                item.getStatus(),item.getQuantity(),item.getId());
         return null;
+    }
+
+    @Override
+    public void  removeItem(String itemName) throws SQLException, ClassNotFoundException {
+        itemMapper.removeItem(itemName);
+    }
+
+    @Override
+    public void  removeItems(String itemNames)  {
+        itemMapper.removeItems(itemNames);
     }
 
     @Override
