@@ -21,7 +21,7 @@ public class CartController {
 
     @PostMapping("/addNewCart")
     public int addNewCart(int userId) {
-
+        System.out.println("adding new cart");
         return cartService.generateNewCart(userId);
 
     }
@@ -43,12 +43,12 @@ public class CartController {
         int id = cartService.getCartByUser(userId);
         System.out.println("getting cart id----" + id);
         return id;
-
     }
 
     @GetMapping("/getItemsByCart")
     public List<ItemQuantity> getItemsByCart(int cartId) {
 
+        System.out.println("get items by cart controller");
         return cartService.getAllItemsByCart(cartId);
 
     }

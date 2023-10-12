@@ -6,6 +6,7 @@ import com.shaoyu.backend.model.Item;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Mapper
@@ -20,6 +21,8 @@ public interface ItemMapper extends BaseMapper<Item> {
     List<Item> getAllItems();
 
     Item selectItemById(Integer id);
+
+    List<Item> selectItemsById(List<Integer> list);
 
     List<Item> selectItemsByRegion(Integer personId);
 

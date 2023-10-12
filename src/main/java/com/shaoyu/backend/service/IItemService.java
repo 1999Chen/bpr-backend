@@ -14,6 +14,8 @@ public interface IItemService {
     List<Item> getAllItems() throws ClassNotFoundException, SQLException;
     String uploadItem(Item item);
 
+    List<Item> getItemsById(List<Integer> list) throws SQLException, ClassNotFoundException;
+
 
     List<Item> getPrediction(int userId);
     String updateItemInfo(Item item);

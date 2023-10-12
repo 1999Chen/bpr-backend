@@ -42,7 +42,7 @@
     </delete>
 
     <select id="selectCartByUserId" resultType="java.lang.Integer">
-        select cart_id from cart where user_id = #{userId} and is_chekced = 0
+        select cart_id from cart where user_id = #{userId} and is_checked = 0
     </select>
 
     <select id="selectUserByCartId" resultType="java.lang.Integer">

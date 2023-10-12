@@ -29,6 +29,7 @@ public class CartServiceImpl implements ICartService {
              ) {
             System.out.println(i.toString());
         }
+        System.out.println("cart list have now "+list);
        return list;
     }
 
@@ -50,7 +51,9 @@ public class CartServiceImpl implements ICartService {
 
     @Override
     public int getCartByUser(int userId) {
-        return cartMapper.selectCartByUserId(userId);
+        int a = cartMapper.selectCartByUserId(userId);
+        System.out.println("cart id is "+a);
+        return a;
     }
 
     @Override

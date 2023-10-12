@@ -14,9 +14,12 @@ public interface UserMapper extends BaseMapper<Item> {
 
     List<User> selectAllUsers();
     int validateUserInfo(String username,String password);
-    User insertUser(User user);
+    void insertUser(String username,String password,String region,String email,String address,int gender,int age, int phone);
     String selectUserRole(String username);
-    String deleteUser(String username);
+    User getUser(String username);
 
+    int validateSignUp(String username);
     void updateUserInfo(User user);
+
+    List<Item> getPrediction(int userId);
 }

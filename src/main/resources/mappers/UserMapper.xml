@@ -10,6 +10,18 @@
     </resultMap>
 
 
+    <resultMap type="com.shaoyu.backend.model.Item" id="ItemResult">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="description" column="description" />
+        <result property="region" column="region" />
+        <result property="imageBase64" column="imageBase64" />
+        <result property="price" column="price" />
+        <result property="status" column="status" />
+        <result property="quantity" column="quantity" />
+    </resultMap>
+
+
     <select id="selectUserRole"  resultType="java.lang.String">
         select role from user where username = #{username}
     </select>
@@ -18,9 +30,14 @@
         select COUNT(username) as amount from user where username = #{username} and password = #{password}
     </select>
 
-    <insert id="insertUser"  parameterType="com.shaoyu.backend.model.User">>
-        insert into user(username,password,role,address,phone_number,email,age,region,gender,user_id)
-    values (#{username},#{password},'customer',#{address},#{phone},#{email},#{age},#{region},#{gender},null)
+    <select id="validateSignUp"  resultType="java.lang.Integer">
+        select COUNT(username) as amount from user where username = #{username}
+    </select>
+
+
+    <insert id="insertUser"  keyProperty="id" parameterType="com.shaoyu.backend.model.User">
+        insert into user(id,username,password,role,region,email,address,gender,age,phone)
+        values (null,#{username},#{password},'customer',#{region},#{email},#{address},#{gender},#{age},#{phone})
     </insert>
 
     <update id="updateUserInfo"  parameterType="com.shaoyu.backend.model.User">>
@@ -34,4 +51,14 @@
                       ,status=#{status},quantity=#{quantity},category=#{category}
         where id = #{id}
     </update>
+
+    <select id="getPrediction"  resultMap="ItemResult">
+        select * from item where id in  #{itemList}
+    </select>
+
+    <select id="getUser"  resultType="com.shaoyu.backend.model.User">
+        select  *  from user where username = #{username} LIMIT 1
+    </select>
+
+
 </mapper>

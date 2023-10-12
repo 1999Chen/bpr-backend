@@ -40,13 +40,6 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public void addOrder(int cartId,int amount) {
         int userId = cartMapper.selectUserByCartId(cartId);
-//        System.out.println("addOrder userId is "+ userId);
-//
-//        java.util.Date currentDate = new java.util.Date();
-//        java.sql.Date date = new java.sql.Date(currentDate.getTime());
-//
-//        System.out.println("current date is "+date);
-
 
         SimpleDateFormat tempDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = tempDate.format(new java.util.Date());

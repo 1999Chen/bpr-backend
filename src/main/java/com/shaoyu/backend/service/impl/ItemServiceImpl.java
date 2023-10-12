@@ -42,6 +42,12 @@ public class ItemServiceImpl implements IItemService {
     }
 
     @Override
+    public  List<Item> getItemsById(List<Integer> list) throws SQLException, ClassNotFoundException {
+        System.out.println("servive list 是"+list);
+        List<Item> list1 = itemMapper.selectItemsById(list);
+        return  list1;
+    }
+    @Override
     public List<Item> getAllItems() throws ClassNotFoundException, SQLException {
         List<Item>list = itemMapper.getAllItems();
         System.out.println("get all items : "+list.size());

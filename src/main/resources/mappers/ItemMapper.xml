@@ -68,6 +68,10 @@
 
     </delete>
 
-
+    <select id="selectItemsById"  resultMap="ItemResult">
+        select * from item where id in  <foreach collection="list" item="id" open="(" close=")" separator=",">
+        #{id,jdbcType=BIGINT}
+    </foreach>
+    </select>
 
 </mapper>
